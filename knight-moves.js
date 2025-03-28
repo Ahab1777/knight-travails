@@ -1,0 +1,5 @@
+
+function knightMoves(currentPosition, targetPosition){
+
+}
+
