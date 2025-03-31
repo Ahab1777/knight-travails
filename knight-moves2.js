@@ -1,7 +1,30 @@
 //create board
 //create representation of the board with only numbers
+//Breadth-first
+    //
 
+class PositionNode{
+    constructor(currentIndex, originIndex = null){
+        this._currentIndex = currentIndex
+        this._originIndex = originIndex
+    }
 
+    set currentIndex(value){
+        this._currentIndex = value
+    }
+
+    set originIndex(value){
+        this._originIndex = value
+    }
+
+    get currentIndex(){
+        return this._currentIndex
+    }
+
+    get originIndex(){
+        return this._originIndex
+    }
+}
 
 class Board{
     constructor(x,y){
@@ -17,6 +40,7 @@ class Board{
         return this._adjacencyArray;
     }
     
+    
     //Create only one step and apply it recursively 
         //Is this the target square?
             //True - return square
@@ -24,13 +48,29 @@ class Board{
     //Find shortest path
     //print shortest path
     knightMoves(currentPosition, targetPosition){
+        const queue = [];
         const currentPositionIndex = this.positionToIndex(currentPosition)
         const targetPositionIndex = this.positionToIndex(targetPosition)
-        if (targetPosition === currentPosition) {
-            return true
-        } else {
+        let finalPosition;
+        queue.push(new PositionNode(currentPositionIndex, targetPositionIndex))
+        while(queue.length){
+            if (queue[0].currentIndex === targetPositionIndex) {
+                finalPosition = queue[0]
+                break;
+            } else {
+                //find current position on board and loop through all pathsByIndex values
+                const nextPossibleStepsArrayByIndex = this._board[queue[0].currentIndex].pathsByIndex
+                nextPossibleStepsArrayByIndex.forEach(squareIndex => {
+                    queue.push(new PositionNode(squareIndex, queue[0].currentIndex))
+                })
+            }
             
         }
+        
+        let steps = 0; //add them through each steps back from the final node
+        //print number of steps
+        //print path
+      
     }
     
     createBoardArray(x, y) { // x and y for sides of the board
@@ -52,14 +92,13 @@ class Board{
         return boardArray;
     }
     
-    
     positionToIndex(position){
-        for (const square of this._board) {
-            if (square.position[0] === position[0] && square.position[1] === position[1]) {
-                return square.index;
-            }
+    for (const square of this._board) {
+        if (square.position[0] === position[0] && square.position[1] === position[1]) {
+            return square.index;
         }
-        return null; // Return null if no match is found
+    }
+    return null; // Return null if no match is found
     }
     populateAdjacencies(boardArray){
         boardArray.forEach((square, index, array) => {
@@ -79,13 +118,6 @@ class Board{
             }
         });
     }
-
-
-    
-  
-    
-    
-    
     
     printBoard() {
         const board = this._board
