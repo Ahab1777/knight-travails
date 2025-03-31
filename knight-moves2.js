@@ -2,6 +2,7 @@
 //create representation of the board with only numbers
 
 
+
 class Board{
     constructor(x,y){
         this._board = this.createBoardArray(x, y)
@@ -11,12 +12,27 @@ class Board{
     get board() {
         return this._board;
     }
-
+    
     get adjacencyArray() {
         return this._adjacencyArray;
     }
-
-
+    
+    //Create only one step and apply it recursively 
+        //Is this the target square?
+            //True - return square
+            //False - recursion with new targetPosition
+    //Find shortest path
+    //print shortest path
+    knightMoves(currentPosition, targetPosition){
+        const currentPositionIndex = this.positionToIndex(currentPosition)
+        const targetPositionIndex = this.positionToIndex(targetPosition)
+        if (targetPosition === currentPosition) {
+            return true
+        } else {
+            
+        }
+    }
+    
     createBoardArray(x, y) { // x and y for sides of the board
         const boardArray = [];
         let index = 0;
@@ -37,7 +53,7 @@ class Board{
     }
     
     
-    findPositionInAdjacencyArray(position){
+    positionToIndex(position){
         for (const square of this._board) {
             if (square.position[0] === position[0] && square.position[1] === position[1]) {
                 return square.index;
@@ -55,7 +71,7 @@ class Board{
                         if (newX >= 0 && newX < 8 && newY >= 0 && newY < 8) {
                             const destination = [newX, newY];
                             array[index].paths.push(destination)
-                            array[index].pathsByIndex.push(this.findPositionInAdjacencyArray(destination))
+                            array[index].pathsByIndex.push(this.positionToIndex(destination))
                             //square.paths.push(destination); // Push to the square's paths array
                         }
                     }
@@ -67,22 +83,6 @@ class Board{
 
     
   
-    
-    //Create only one step and apply it recursively 
-        //Is this the target square?
-            //True - return square
-            //False - recursion with new targetPosition
-    //Find shortest path
-    //print shortest path
-    knightMoves(currentPosition, targetPosition){
-        const currentPositionIndex = this.findPositionInAdjacencyArray(currentPosition)
-        const targetPositionIndex = this.findPositionInAdjacencyArray(targetPosition)
-        if (targetPosition === currentPosition) {
-            return true
-        } else {
-            
-        }
-    }
     
     
     
@@ -101,5 +101,5 @@ class Board{
 // Example usage:
 const board = new Board(8, 8);
 board.printBoard();
-console.log(board.findPositionInAdjacencyArray([0,0]))
+console.log(board.positionToIndex([0,0]))
 console.log('Full board array',board.board)

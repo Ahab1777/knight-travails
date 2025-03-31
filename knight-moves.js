@@ -12,36 +12,12 @@ function createBoardArray(x, y){ // x and y for sides of the board
     for (let i = 0; i < x; i++) {
         for (let j = 0; j < y; j++) {
             
-            boardArray.push([i, j, []])//the array index will be the square's ID. Empty array to add possible paths from this position     
+            boardArray.push([j, i, []])//the array index will be the square's ID. Empty array to add possible paths from this position     
         }        
     }
     return boardArray
 }
 
-
-
-
-// function createEdgeList(boardArray){
-//     let edgeList = []
-//     for (let x = -2; x < 3; x++) {
-//         for (let y = -2; y < 3; y++) {
-//             if (Math.abs(x) !== Math.abs(y) && x !== 0 && y !== 0) {//ignore zeroes and equal numbers
-                
-//                 //for each board position, push into edgeList all edges(possible moves from that position)
-//                 boardArray.forEach(square => {
-//                     if (square[0] + x < 0 || square[0] + x > 7 || square[1] + y < 0 || square[1] + y > 7 ) {
-//                         return;
-//                     } else {
-//                         const destination = [square[0] + x, square[1] + y]
-//                         console.log([square, destination])
-//                         edgeList.push([square, destination])
-//                     }
-//                 });
-//             }            
-//         }        
-//     }
-//     return edgeList
-// }
 
 function createAdjacency(boardArray) {
     // let adjacencyList = Array.from({ length: boardArray.length }, () => []); // Create array of arrays
@@ -82,85 +58,6 @@ function knightMoves(currentPosition, targetPosition){
     })
 
  }
-
-
-
-// function createAdjacency(boardArray) {
-//     let adjacencyList = Array.from({ length: boardArray.length }, () => []); // Create array of arrays
-//     boardArray.forEach((square, currentIndex) => {
-//         for (let x = -2; x < 3; x++) {
-//             for (let y = -2; y < 3; y++) {
-//                 if (Math.abs(x) !== Math.abs(y) && x !== 0 && y !== 0) { // Ignore zeroes and equal numbers
-//                     if (square[0] + x >= 0 && square[0] + x < 8 && square[1] + y >= 0 && square[1] + y < 8) {
-//                         const destination = [square[0] + x, square[1] + y];
-//                         adjacencyList[currentIndex].push(destination);
-//                     }
-//                 }
-//             }
-//         }
-//     });
-//     return adjacencyList;
-//     }
-
-
-//     for (let x = -2; x < 3; x++) {
-//         for (let y = -2; y < 3; y++) {
-//             if (Math.abs(x) !== Math.abs(y) && x !== 0 && y !== 0) {//ignore zeroes and equal numbers
-                
-//                 //for each board position, push into edgeList all edges(possible moves from that position)
-//                     if (square[0] + x < 0 || square[0] + x > 7 || square[1] + y < 0 || square[1] + y > 7 ) {
-//                         return;
-//                     } else {
-//                         const destination = [square[0] + x, square[1] + y]
-//                         console.log([square, destination])
-//                         edgeList.push([square, destination])
-//                     }
-//                 });
-//             }            
-//         }        
-//     }
-//     return edgeList
-// }
-
-
-
-
-
-
-
-// function adjacencyList(edgeList, boardArray){
-//     //loop over edgeList array
-//     const adjList = [];
-//     //Put each edge on the corresponding list index
-//     for (let i = 0; i < edgeList.length; i++) {
-//         for (let x = 0; x < boardArray.length; x++) {
-//             for (let y = 0; y < boardArray.length; y++) {
-//                 if (edgeList[i] === ) {
-                    
-//                 }                
-//             }
-//         }
-        
-//     }
-
-
-
-
-//     const adjacencyList = [];
-//     for (let x = 0; x < 8; x++) {
-    //         for (let y = 0; y < 8; y++) {
-        
-    //             for (let index = 0; index < edgeList.length; index++) {
-        //                 //
-        //             }            
-        //         }        
-        //     }
-        // }
-        
-
-
-
-
 
 function printBoard(board){
     const boardSize = 8; // Each row has 8 items
