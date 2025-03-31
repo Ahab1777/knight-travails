@@ -21,3 +21,7 @@ The Function
     Checks if within board bounds
     Iterate through all paths and find the smallest one
     Print path sequence
+
+Vertices
+    V = 64
+    E = ?
