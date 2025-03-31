@@ -126,9 +126,7 @@ function knightMoves(currentPosition, targetPosition){
 
 
 
-function matchArrays(a, b){
-    return JSON.stringify(a) === JSON.stringify(b)
-}
+
 
 // function adjacencyList(edgeList, boardArray){
 //     //loop over edgeList array
